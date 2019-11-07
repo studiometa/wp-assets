@@ -6,15 +6,15 @@ WordPress Hook Helper for CSS and Javascript
     - [WordPress Vanilla](#wordpress-vanilla)
 2. [Usage](#usage)
     - [Assets lifecycle](#assets-lifecycle)
-    - [Register css/js assets](#register-css-js-assets)
+    - [Register css/js assets](#register-cssjs-assets)
     - [Register group assets](#register-group-assets)
     - [Enqueue css/js/group assets (already registered)](#enqueue-cssjsgroup-assets-already-registered)
-    - [Enqueue advanced css/js assets (not registered)](#enqueue-advanced-css-js-assets-not-registered)
+    - [Enqueue advanced css/js assets (not registered)](#enqueue-advanced-cssjs-assets-not-registered)
     - [Enqueue advanced group assets (not registered)](#enqueue-advanced-group-assets-not-registered)
 3. [Assets anatomy](#assets-anatomy)
     - [CSS](#css)
     - [JS](#js)
-    - [Group (CSS/JS)](#group-css-js)
+    - [Group (CSS/JS)](#group-cssjs)
 4. [Methods](#methods)
 
 ## Installation
