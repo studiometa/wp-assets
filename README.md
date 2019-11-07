@@ -2,6 +2,21 @@
 
 WordPress Hook Helper for CSS and Javascript
 
+1. [Installation](#installation)
+    - [WordPress Vanilla](#wordpress-vanilla)
+2. [Usage](#usage)
+    - [Assets lifecycle](#assets-lifecycle)
+    - [Register css/js assets](#register-cssjs-assets)
+    - [Register group assets](#register-group-assets)
+    - [Enqueue css/js/group assets (already registered)](#enqueue-cssjsgroup-assets-already-registered)
+    - [Enqueue advanced css/js assets (not registered)](#enqueue-advanced-cssjs-assets-not-registered)
+    - [Enqueue advanced group assets (not registered)](#enqueue-advanced-group-assets-not-registered)
+3. [Assets anatomy](#assets-anatomy)
+    - [CSS](#css)
+    - [JS](#js)
+    - [Group (CSS/JS)](#group-cssjs)
+4. [Methods](#methods)
+
 ## Installation
 
 ### WordPress Vanilla
@@ -143,7 +158,9 @@ $wp_assets->enqueue_group(
 );
 ```
 
-### Asset CSS properties
+## Assets anatomy
+
+### CSS
 
 ```php
 array(
@@ -156,7 +173,7 @@ array(
 );
 ```
 
-### Asset JS properties
+### JS
 
 ```php
 array(
@@ -169,7 +186,7 @@ array(
 );
 ```
 
-### Asset Group (CSS/JS)
+### Group (CSS/JS)
 
 A group contains a `asset` css and js, which means that they have their own properties. But there are 2 nuances:
 
@@ -196,7 +213,7 @@ array(
 );
 ```
 
-### Methods
+## Methods
 
 ```php
 // Register
