@@ -1,0 +1,26 @@
+{
+  "name": "wp-assets",
+  "version": "1.0.0",
+  "description": "WordPress Hook Helper for CSS and Javascript",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/studiometa/wp-assets.git"
+  },
+  "keywords": [
+    "wordpress",
+    "muplugins",
+    "mu-plugins",
+    "plugin",
+    "core",
+    "helper",
+    "assets",
+    "css",
+    "js"
+  ],
+  "author": "Studio Meta <agence@studiometa.fr>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/studiometa/wp-assets/issues"
+  },
+  "homepage": "https://github.com/studiometa/wp-assets#readme"
+}
