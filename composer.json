@@ -3,7 +3,6 @@
 	"description": "Manage and autoload your WordPress assets based on a YAML configuration file.",
 	"license": "MIT",
 	"require": {
-		"php": "^7.0",
 		"symfony/yaml": "^5.0"
 	},
 	"require-dev": {
