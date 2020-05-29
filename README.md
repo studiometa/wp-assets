@@ -1,4 +1,4 @@
-# Assets
+# WordPress Assets
 
 > Manage and autoload your WordPress assets based on a YAML configuration file.
 

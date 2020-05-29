@@ -1,5 +1,5 @@
 {
-	"name": "studiometa/wp",
+	"name": "studiometa/wp-assets",
 	"description": "Manage and autoload your WordPress assets based on a YAML configuration file.",
   "version": "1.0.0",
 	"license": "MIT",
