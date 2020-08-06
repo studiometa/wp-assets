@@ -60,11 +60,19 @@ front-page:
   css:
     home: dist/css/pages/home.css
 
+# The `single` assets group will be added to both the 
+# `single.php` and `single-post.php` template.
 single:
   js:
     single: dist/js/pages/single.js
   css:
     single: dist/css/pages/single.css
+
+# The `single-post` assets group will be added to the `single-post.php`
+# template and all `single-post-<slug>.php` that might exists.
+single-post:
+  js:
+    single-post: dist/js/pages/single-post.js
 ```
 
 The `Assets` class uses the [`template_include` WordPress filter](https://developer.wordpress.org/reference/hooks/template_include/) to load assets based on the template resolution.
