@@ -10,12 +10,12 @@ use Symfony\Component\Yaml\Yaml;
 class Assets
 {
 
-  /** @var array The parsed configuration. */
+    /** @var array The parsed configuration. */
     public $config;
 
-  /**
-   * __construct
-   */
+    /**
+     * __construct
+     */
     public function __construct()
     {
         $config_path = get_template_directory() . '/assets.yml';
@@ -34,12 +34,12 @@ class Assets
         add_filter('template_include', array($this, 'enqueueAll'));
     }
 
-  /**
-   * Register all defined JS and CSS assets with automatic
-   * versioning based on their content's MD5 hash.
-   *
-   * @return void
-   */
+    /**
+     * Register all defined JS and CSS assets with automatic
+     * versioning based on their content's MD5 hash.
+     *
+     * @return void
+     */
     public function registerAll()
     {
         foreach ($this->config as $name => $config) {
@@ -67,30 +67,32 @@ class Assets
         }
     }
 
-  /**
-   * Enqueue CSS and JS files based on the WordPress template.
-   *
-   * @param  string $template The template path.
-   * @return string           The template path.
-   */
+    /**
+     * Enqueue CSS and JS files based on the WordPress template.
+     *
+     * @param  string $template The template path.
+     * @return string           The template path.
+     */
     public function enqueueAll($template)
     {
-        $pathinfo = pathinfo($template);
+        $potential_names = $this->getPotentialNames($template);
 
-        foreach ($this->config as $name => $config) {
-            if ((string)$name !== $pathinfo['filename']) {
-                continue;
-            }
-
-            if (isset($config['css'])) {
-                foreach ($config['css'] as $handle => $path) {
-                    $this->enqueue('style', $handle);
+        foreach ($potential_names as $potential_name) {
+            foreach ($this->config as $name => $config) {
+                if ((string)$name !== $potential_name) {
+                    continue;
                 }
-            }
 
-            if (isset($config['js'])) {
-                foreach ($config['js'] as $handle => $path) {
-                    $this->enqueue('script', $handle);
+                if (isset($config['css'])) {
+                    foreach ($config['css'] as $handle => $path) {
+                        $this->enqueue('style', $handle);
+                    }
+                }
+
+                if (isset($config['js'])) {
+                    foreach ($config['js'] as $handle => $path) {
+                        $this->enqueue('script', $handle);
+                    }
                 }
             }
         }
@@ -98,15 +100,43 @@ class Assets
         return $template;
     }
 
+    /**
+     * Get all the potential assets group name.
+     * For a template file `single-post-hello.php`, the following group names
+     * will be returned:
+     *
+     * - single
+     * - single-post
+     * - single-post-hello
+     *
+     * @param  string $template  The full template path.
+     */
+    protected function getPotentialNames($template)
+    {
+        $pathinfo = pathinfo($template);
+        $parts = explode('-', $pathinfo['filename']);
 
-  /**
-   * Register a single asset.
-   *
-   * @param  string $type   The type of the asset: 'style' or 'script'
-   * @param  string $handle The asset's handle
-   * @param  string $path   The asset's path in the theme
-   * @return void
-   */
+        return array_reduce($parts, function ($acc, $part) {
+            if (empty($acc)) {
+                return [$part];
+            }
+
+            $previous_part = $acc[count($acc) - 1];
+            $acc[] = $previous_part . '-' . $part;
+
+            return $acc;
+        }, []);
+    }
+
+
+    /**
+     * Register a single asset.
+     *
+     * @param  string $type   The type of the asset: 'style' or 'script'
+     * @param  string $handle The asset's handle
+     * @param  string $path   The asset's path in the theme
+     * @return void
+     */
     protected function register($type, $handle, $path)
     {
         if (is_array($path)) {
@@ -131,7 +161,7 @@ class Assets
             wp_register_style(
                 $handle,
                 $public_path,
-                array(),
+                [],
                 $hash,
                 $media
             );
@@ -139,20 +169,20 @@ class Assets
             wp_register_script(
                 $handle,
                 $public_path,
-                array(),
+                [],
                 $hash,
                 $in_footer
             );
         }
     }
 
-  /**
-   * Enqueue an asset given its handle.
-   *
-   * @param  string $type   The type of the asset: 'style' or 'script'
-   * @param  string $handle The asset's handle
-   * @return void
-   */
+    /**
+     * Enqueue an asset given its handle.
+     *
+     * @param  string $type   The type of the asset: 'style' or 'script'
+     * @param  string $handle The asset's handle
+     * @return void
+     */
     protected function enqueue($type, $handle)
     {
         add_action('wp_enqueue_scripts', function () use ($type, $handle) {
