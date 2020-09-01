@@ -13,13 +13,14 @@ class Assets
 
     /**
      * __construct
+     * @param string $theme_path The absolute path to the theme.
      */
-    public function __construct()
+    public function __construct(string $theme_path)
     {
-        $config_path = get_template_directory() . '/assets.yml';
+        $config_path = $theme_path . '/assets.yml';
 
         if (!file_exists($config_path)) {
-            $config_path = get_template_directory() . '/assets.yaml';
+            $config_path = $theme_path . '/assets.yaml';
 
             if (!file_exists($config_path)) {
                 throw new \Exception('No assets config file found. Try adding an `assets.yml` file in your theme.', 1);
