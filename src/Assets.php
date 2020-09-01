@@ -2,8 +2,6 @@
 
 namespace Studiometa\WP;
 
-use Symfony\Component\Yaml\Yaml;
-
 /**
  * Helper class to manage a theme's assets.
  */
@@ -28,7 +26,7 @@ class Assets
             }
         }
 
-        $this->config = Yaml::parseFile($config_path);
+        $this->config = \Spyc::YAMLLoad($config_path);
 
         add_action('wp_enqueue_scripts', array($this, 'registerAll'));
         add_filter('template_include', array($this, 'enqueueAll'));
