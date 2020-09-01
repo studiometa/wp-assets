@@ -23,7 +23,7 @@ class Assets
             $config_path = $theme_path . '/assets.yaml';
 
             if (!file_exists($config_path)) {
-                throw new \Exception('No assets config file found. Try adding an `assets.yml` file in your theme.', 1);
+                throw new \Exception('No assets config file found. Try adding an `assets.yml` file in ' . $theme_path . '.', 1);
             }
         }
 
